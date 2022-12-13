@@ -7,8 +7,6 @@ enum Route {
     AddQuiz,
     #[at("/")]
     Home,
-    #[at("/secure")]
-    Secure,
     #[not_found]
     #[at("/404")]
     NotFound,
@@ -16,8 +14,16 @@ enum Route {
 
 #[function_component(App)]
 fn app() -> Html {
+    let click_callback = Callback::from(|_| {
+    
+    });
     html! {
+        <>
         <h1>{ "Hunterクイズ工事中" }</h1>
+        <button onclick={click_callback}>
+                { "押しても何も起きません" }
+        </button>
+        </>
     }
 }
 
