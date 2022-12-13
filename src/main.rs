@@ -17,7 +17,7 @@ enum Route {
 #[function_component(App)]
 fn app() -> Html {
     html! {
-        <h1>{ "Hello World" }</h1>
+        <h1>{ "Hunterクイズ工事中" }</h1>
     }
 }
 
