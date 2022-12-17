@@ -624,7 +624,7 @@ function initSync(module) {
 
 async function init(input) {
     if (typeof input === 'undefined') {
-        input = new URL('hunter-quiz-ecefc29d03b5f88b_bg.wasm', import.meta.url);
+        input = new URL('hunter-quiz-7182c467cc4d1ab3_bg.wasm', import.meta.url);
     }
     const imports = getImports();
 

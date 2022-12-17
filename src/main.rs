@@ -33,10 +33,12 @@ fn app() -> Html {
             </li>
         </ul>
       </nav>
-    
-        <button onclick={click_callback} >
-                { "押しても何も起きません" }
-        </button>
+      <div class="first-select-button">
+      <div class="inner">
+      <button type="button" class="btn btn-outline-primary inner-button" onclick={click_callback}>{ "ひとりで遊ぶ" }</button>
+      <button type="button" class="btn btn-outline-warning inner-button">{ "みんなで遊ぶ" }</button>
+      </div>
+      </div>
         </>
     }
 }
