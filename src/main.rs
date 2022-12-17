@@ -17,9 +17,10 @@ fn app() -> Html {
     let click_callback = Callback::from(|_| {});
     html! {
         <>
-        <header>
-            <h1>{ "工事中" }</h1>
-            <nav>
+        <nav class="navbar sticky-top navbar-light bg-light">
+        <div class="container-fluid header-contents">
+          <a class="navbar-brand display-block" href="#">{"Hunter✖️クイズ"}</a>
+        </div>
             <ul class="nav justify-content-end">
             <li class="nav-item">
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">{"問題追加"}</a>
@@ -31,9 +32,9 @@ fn app() -> Html {
             <a class="nav-link" href="#">{"サインアップ"}</a>
             </li>
         </ul>
-        </nav>
-        </header>
-        <button onclick={click_callback}>
+      </nav>
+    
+        <button onclick={click_callback} >
                 { "押しても何も起きません" }
         </button>
         </>
