@@ -1,25 +1,58 @@
+use quiz_page::quiz_page_view::QuizPageView;
 use yew::prelude::*;
 use yew_router::prelude::*;
 
-#[derive(Clone, Routable, PartialEq)]
+mod quiz_page;
+
+#[derive(Debug, Clone, PartialEq, Routable)]
 enum Route {
-    #[at("/add_quiz")]
-    AddQuiz,
     #[at("/")]
     Home,
-    #[not_found]
-    #[at("/404")]
-    NotFound,
+    // #[at("/add_quiz")]
+    // AddQuiz,
+    #[at("/quiz_page")]
+    QuizPageView,
+    // #[not_found]
+    // #[at("/404")]
+    // NotFound,
+}
+
+fn switch(routes: Route) -> Html {
+    match routes {
+        Route::Home => html! {
+            <Home />
+        },
+        Route::QuizPageView => html! {
+        <QuizPageView/>
+        },
+    }
+}
+
+#[function_component(Home)]
+fn home() -> Html {
+    let navigator = use_navigator().unwrap();
+
+    let onclick = Callback::from(move |_| navigator.push(&Route::QuizPageView));
+    html! {
+        <>
+
+      <div class="first-select-button">
+      <div class="inner">
+      <button type="button" class="btn btn-outline-primary inner-button" onclick={onclick}>{ "ひとりで遊ぶ" }</button>
+      <button type="button" class="btn btn-outline-warning inner-button" >{ "みんなで遊ぶ" }</button>
+      </div>
+      </div>
+      </>
+    }
 }
 
 #[function_component(App)]
 fn app() -> Html {
-    let click_callback = Callback::from(|_| {});
     html! {
-        <>
+        <BrowserRouter>
         <nav class="navbar sticky-top navbar-light bg-light">
         <div class="container-fluid header-contents">
-          <a class="navbar-brand display-block" href="#">{"Hunter✖️クイズ"}</a>
+          <Link<Route> classes={classes!("navbar-brand")} to={Route::Home}>{ "Hunter Quiz" }</Link<Route>>
         </div>
             <ul class="nav justify-content-end">
             <li class="nav-item">
@@ -33,16 +66,13 @@ fn app() -> Html {
             </li>
         </ul>
       </nav>
-      <div class="first-select-button">
-      <div class="inner">
-      <button type="button" class="btn btn-outline-primary inner-button" onclick={click_callback}>{ "ひとりで遊ぶ" }</button>
-      <button type="button" class="btn btn-outline-warning inner-button">{ "みんなで遊ぶ" }</button>
-      </div>
-      </div>
-        </>
+            <Switch<Route> render={switch} /> // <- must be child of <BrowserRouter>
+        </BrowserRouter>
     }
 }
 
 fn main() {
+    wasm_logger::init(wasm_logger::Config::default());
+    println!("Hello");
     yew::Renderer::<App>::new().render();
 }
