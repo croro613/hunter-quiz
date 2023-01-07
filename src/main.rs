@@ -1,8 +1,8 @@
-use quiz_page::quiz_page_view::QuizPageView;
+use page::quiz_page_view::QuizPageView;
 use yew::prelude::*;
 use yew_router::prelude::*;
 
-mod quiz_page;
+mod page;
 
 #[derive(Debug, Clone, PartialEq, Routable)]
 enum Route {
